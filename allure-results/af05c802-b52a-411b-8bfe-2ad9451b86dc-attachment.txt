@@ -1,0 +1,3 @@
+{
+  "text": "https://far-off-instruction.name"
+}
