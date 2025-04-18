@@ -1,26 +1,58 @@
-name: CI
-on: [push, pull_request]
+name: allure-report
+
+on:
+  release:
+    types:
+      - created
+  push:
+    branches:
+      - master  
+
 jobs:
-  build:
+  allure:
+    name: Generate Allure Report
     runs-on: ubuntu-latest
+
     steps:
-        - name: ⬇️ Checkout Code
-          uses: actions/checkout@v4
+      # Крок 1: Клонування репозиторію
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-        - name: 🐢 Setup Node
-          uses: actions/setup-node@v4
-          with:
-            node-version-file: '.nvmrc'
+      # Крок 2: Отримання історії Allure
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-        - name: 🏗️ Install Dependencies
-          run: npm install
+      # Крок 3: Встановлення Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Актуальна версія Node.js
 
-        - name: 🧪 Test
-          run: npm run test:local
+      # Крок 4: Встановлення залежностей проєкту
+      - name: Install dependencies
+        run: npm install
 
-        - name: 📦 Upload Logs
-          uses: actions/upload-artifact@v4
-          if: failure()
-          with:
-            name: logs
-            path: logs
+      # Крок 5: Запуск тестів
+      - name: Run tests
+        run: npm run test  # Замініть на вашу команду запуску тестів, яка генерує allure-results
+
+      # Крок 6: Генерація звіту Allure
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        with:
+          allure_results: allure-results  # Шлях до результатів Allure
+          allure_history: gh-pages        # Історія (папка gh-pages)
+          keep_reports: 20                # Зберігати останні 20 звітів
+
+      # Крок 7: Розгортання звіту на GitHub Pages
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages       # Гілка для GitHub Pages
+          PUBLISH_DIR: gh-pages          # Директорія для публікації
