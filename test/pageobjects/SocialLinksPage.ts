@@ -44,7 +44,3 @@ class SocialPage {
 }
 
 export default new SocialPage();
-
-
-
-
