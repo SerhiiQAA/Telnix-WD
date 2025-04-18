@@ -8,22 +8,18 @@ class AssistantPage {
     get assistantAllMessages() { return $$('.c-dEGHBU'); } 
 
     async openAssistant() {
-        // await this.assistantButton.waitForExist({ timeout: 5000 });
         await this.assistantButton.click();
     }
 
     async typeMessage(message: string) {
-        // await this.assistantMsgField.waitForExist({ timeout: 5000 });
         await this.assistantMsgField.setValue(message);
     }
 
     async sendMessage() {
-        // await this.assistantSendMsgButton.waitForExist({ timeout: 5000 });
         await this.assistantSendMsgButton.click();
     }
 
     async getSentMessageText(): Promise<string> {
-        // await this.assistantSentMsgField.waitForExist({ timeout: 10000 });
         return await this.assistantSentMsgField.getText();
     }
 
