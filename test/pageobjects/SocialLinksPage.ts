@@ -1,5 +1,4 @@
 class SocialPage {
-    // Селектори
     get linkedInLink() {
         return $('a[href="https://www.linkedin.com/company/telnyx/"]');
     }
@@ -12,7 +11,6 @@ class SocialPage {
         return $('a[href="https://www.facebook.com/Telnyx/"]');
     }
 
-    // Методи для кліків
     async clickLinkedInLink(): Promise<void> {
         await this.linkedInLink.waitForDisplayed();
         await this.linkedInLink.click();
@@ -28,7 +26,6 @@ class SocialPage {
         await this.facebookLink.click();
     }
 
-    // Методи для роботи з вкладками
     async getWindowHandles(): Promise<string[]> {
         return await browser.getWindowHandles();
     }

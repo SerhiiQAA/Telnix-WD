@@ -26,7 +26,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.toggleMarketingEmailsCheckbox();
         await ContactUsPage.clickSubmit();
-
         expect(await ContactUsPage.successMessage.getText()).toContain('Thank you.');
     });
 
@@ -47,7 +46,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeHowDidYouHear('Online search');
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.clickSubmit();
-
         expect(await ContactUsPage.successMessage.getText()).toContain('Thank you.');
     });
 
@@ -61,7 +59,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeHowDidYouHear('Online search');
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.clickSubmit();
-
         await ContactUsPage.firstNameErrorMsg.waitForExist({ timeout: 5000 });
         expect(await ContactUsPage.firstNameErrorMsg.getText()).toContain('This field is required.');
     });
@@ -76,7 +73,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeHowDidYouHear('Online search');
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.clickSubmit();
-
         await ContactUsPage.lastNameErrorMsg.waitForExist({ timeout: 5000 });
         expect(await ContactUsPage.lastNameErrorMsg.getText()).toContain('This field is required.');
     });
@@ -91,7 +87,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeHowDidYouHear('Online search');
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.clickSubmit();
-
         await ContactUsPage.emailErrorMsg.waitForExist({ timeout: 5000 });
         expect(await (await ContactUsPage.emailErrorMsg.getText()).replace(/\n/g, ' ')).toContain('Must be valid email. example@yourdomain.com');
     });
@@ -105,7 +100,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeHowDidYouHear('Online search');
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.clickSubmit();
-
         expect(await ContactUsPage.successMessage.getText()).toContain('Thank you.');
     });
 
@@ -119,7 +113,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeHowDidYouHear('Online search');
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.clickSubmit();
-
         await ContactUsPage.websiteErrorMsg.waitForExist({ timeout: 5000 });
         expect(await ContactUsPage.websiteErrorMsg.getText()).toContain('This field is required.');
     });
@@ -134,7 +127,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeWebsite(website);
         await ContactUsPage.typeHowDidYouHear('Online search');
         await ContactUsPage.clickSubmit();
-
         await ContactUsPage.additionalInfoErrorMsg.waitForExist({ timeout: 5000 });
         expect(await ContactUsPage.additionalInfoErrorMsg.getText()).toContain('This field is required.');
     });
@@ -149,7 +141,6 @@ describe('Contact Us Page Form', () => {
         await ContactUsPage.typeWebsite(website);
         await ContactUsPage.typeAdditionalInfo(additionalInfo);
         await ContactUsPage.clickSubmit();
-
         await ContactUsPage.howDidYouHearErrorMsg.waitForExist({ timeout: 5000 });
         expect(await ContactUsPage.howDidYouHearErrorMsg.getText()).toContain('This field is required.');
     });

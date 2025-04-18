@@ -17,7 +17,6 @@ describe('Global Coverage Page Form', () => {
         await GlobalCoveragePage.typeCompanyEmail(email);
         await GlobalCoveragePage.toggleReceiveEmailsCheckbox();
         await GlobalCoveragePage.clickSubmitButton();
-
         expect(await GlobalCoveragePage.successMsg.getText()).toContain('Global coverage');
     });
 
@@ -31,7 +30,6 @@ describe('Global Coverage Page Form', () => {
         await GlobalCoveragePage.typeLastName(lastName);
         await GlobalCoveragePage.typeCompanyEmail(email);
         await GlobalCoveragePage.clickSubmitButton();
-
         await GlobalCoveragePage.firstNameErrorMsg.waitForExist({ timeout: 5000 });
         expect(await GlobalCoveragePage.firstNameErrorMsg.getText()).toContain('This field is required.');
     });
@@ -40,7 +38,6 @@ describe('Global Coverage Page Form', () => {
         await GlobalCoveragePage.typeFirstName(firstName);
         await GlobalCoveragePage.typeCompanyEmail(email);
         await GlobalCoveragePage.clickSubmitButton();
-
         await GlobalCoveragePage.lastNameErrorMsg.waitForExist({ timeout: 5000 });
         expect(await GlobalCoveragePage.lastNameErrorMsg.getText()).toContain('This field is required.');
     });
@@ -49,7 +46,6 @@ describe('Global Coverage Page Form', () => {
         await GlobalCoveragePage.typeFirstName(firstName);
         await GlobalCoveragePage.typeLastName(lastName);
         await GlobalCoveragePage.clickSubmitButton();
-
         await GlobalCoveragePage.emailErrorMsg.waitForExist({ timeout: 5000 });
         expect(await (await GlobalCoveragePage.emailErrorMsg.getText()).replace(/\n/g, ' ')).toContain('Must be valid email. example@yourdomain.com');
     });
