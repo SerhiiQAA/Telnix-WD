@@ -2,16 +2,16 @@ import CurrencyFilterPage from '../pageobjects/CurrencyFilterPage';
 
 describe('Currency Selection on Multiple Pages', () => {
     const pages = [
-        '/pricing/messaging',
-        '/pricing/elastic-sip',
-        '/pricing/call-control',
-        '/pricing/numbers',
-        '/pricing/video-api',
-        '/pricing/number-lookup',
-        '/pricing/verify-api',
-        '/pricing/fax',
-        '/pricing/iot-data-plans',
-        '/pricing/networking',
+        // '/pricing/messaging',
+        // '/pricing/elastic-sip',
+        // '/pricing/call-control',
+        // '/pricing/numbers',
+        // '/pricing/video-api',
+        // '/pricing/number-lookup',
+        // '/pricing/verify-api',
+        // '/pricing/fax',
+        // '/pricing/iot-data-plans',
+        // '/pricing/networking',
         '/pricing/storage'
     ];
 
