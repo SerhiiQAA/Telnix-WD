@@ -4,26 +4,26 @@ describe('Social Media Links Navigation', () => {
     before(async () => {
         await browser.url('/');
     });
-
     const links = [
         {
             name: 'LinkedIn',
-            clickMethod: SocialPage.clickLinkedInLink,
+            clickMethod: SocialPage.clickLinkedInLink.bind(SocialPage),
             expectedUrl: 'https://www.linkedin.com/company/telnyx/',
         },
         {
             name: 'Twitter',
-            clickMethod: SocialPage.clickTwitterLink,
+            clickMethod: SocialPage.clickTwitterLink.bind(SocialPage),
             expectedUrl: /https:\/\/(twitter|x)\.com\/telnyx/,
         },
         {
             name: 'Facebook',
-            clickMethod: SocialPage.clickFacebookLink,
+            clickMethod: SocialPage.clickFacebookLink.bind(SocialPage),
             expectedUrl: 'https://www.facebook.com/Telnyx/',
         },
     ];
 
     links.forEach(({ name, clickMethod, expectedUrl }) => {
+        
         it(`Check the ${name} link in the footer`, async () => {
             await clickMethod();
             const handles = await SocialPage.getWindowHandles();
@@ -36,6 +36,7 @@ describe('Social Media Links Navigation', () => {
                     timeoutMsg: 'New URL did not load',
                 }
             );
+
             const currentUrl = await SocialPage.getCurrentUrl();
             if (expectedUrl instanceof RegExp) {
                 await expect(currentUrl).toMatch(expectedUrl);
