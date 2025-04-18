@@ -7,8 +7,8 @@ export const config = {
       browserName: 'firefox',
       'moz:firefoxOptions': {
         args: process.env.HEADLESS === 'true' ? ['-headless'] : [],
-      }
-    }
+      },
+    },
   ],
   baseUrl: process.env.BASE_URL || 'https://telnyx.com',
   maxInstances: process.env.MAX_INSTANCES ? parseInt(process.env.MAX_INSTANCES) : 1,
