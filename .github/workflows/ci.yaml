@@ -1,23 +1,22 @@
-name: allure-report
+name: Publish Allure Report
 
 on:
   push:
     branches:
-      - master # Використовуємо основну гілку
+      - master # Виконується на пуш до основної гілки
 
 jobs:
-  allure:
-    name: Generate Allure Report
+  generate-and-publish-report:
     runs-on: ubuntu-latest
 
     steps:
       # Крок 1: Клонування репозиторію
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
       # Крок 2: Встановлення Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
@@ -25,20 +24,16 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # Крок 4: Запуск тестів у headless-режимі
+      # Крок 4: Запуск тестів у headless-режимі та генерація звіту
       - name: Run Tests and Generate Allure Results
-        env:
-          DISPLAY: ":99" # Емуляція дисплея
         run: |
-          Xvfb :99 & # Запускаємо віртуальний дисплей
-          npx wdio ./wdio.conf.ts --headless # Запускаємо тести у headless-режимі
-          npm run allure:generate # Генерація звіту Allure
+          npx wdio ./wdio.conf.ts # Запускаємо тести в headless-режимі
+          npm run allure:generate # Генеруємо Allure звіт
 
-      # Крок 5: Публікація звіту Allure на GitHub Pages
+      # Крок 5: Публікація Allure звіту на GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-report # Шлях до звіту
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report # Папка, яка містить HTML-звіт
           publish_branch: gh-pages # Гілка для публікації
-
