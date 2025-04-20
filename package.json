@@ -1,5 +1,5 @@
 {
-  "name": "Telnix WD",
+  "name": "telnix-wd",
   "type": "module",
   "devDependencies": {
     "@wdio/allure-reporter": "^9.12.3",
