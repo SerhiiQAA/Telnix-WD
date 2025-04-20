@@ -3,7 +3,7 @@ name: allure-report
 on:
   push:
     branches:
-      - gh-pages  # Вказуємо вашу гілку, на якій буде запускатись Action
+      - master  # Вказуємо вашу гілку, на якій буде запускатись Action
 
 jobs:
   allure:
