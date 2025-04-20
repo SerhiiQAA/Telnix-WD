@@ -12,15 +12,11 @@
     "@faker-js/faker": "^9.7.0"
   },
   "scripts": {
-    "test": "wdio run ./wdio.conf.ts",
-    "allure:generate": "allure generate allure-results --clean",
-    "allure:serve": "allure serve allure-results",
-    "docker:build": "docker build -t webdriverio-project .",
-    "docker:run": "docker run -it webdriverio-project",
-    "clean": "rm -rf allure-results allure-report logs",
-    "test-chrome-headless": "cross-env BROWSER=chrome HEADLESS=true BASE_URL=https://telnyx.com MAX_INSTANCES=5 npx wdio ./config/wdio.chrome.conf.ts",
-    "test-chrome-ui": "cross-env BROWSER=chrome HEADLESS=false BASE_URL=https://telnyx.com MAX_INSTANCES=3 npx wdio ./config/wdio.chrome.conf.ts",
-    "test-firefox-headless": "cross-env BROWSER=firefox HEADLESS=true BASE_URL=https://telnyx.com MAX_INSTANCES=5 npx wdio ./config/wdio.firefox.conf.ts",
-    "test-firefox-ui": "cross-env BROWSER=firefox HEADLESS=false BASE_URL=https://telnyx.com MAX_INSTANCES=3 npx wdio ./config/wdio.firefox.conf.ts"
+  "test:mobile": "wdio run ./config/wdio.mobile.conf.ts",
+  "test:tablet": "wdio run ./config/wdio.tablet.conf.ts",
+  "test:desktop": "wdio run ./config/wdio.desktop.conf.ts",
+  "allure:generate": "allure generate allure-results --clean",
+  "allure:serve": "allure serve allure-results",
+  "clean": "rm -rf allure-results allure-report logs"
   }
 }
