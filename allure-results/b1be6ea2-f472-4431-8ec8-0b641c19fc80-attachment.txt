@@ -1,3 +1,0 @@
-{
-  "text": "Reba.Swift@yahoo.com"
-}

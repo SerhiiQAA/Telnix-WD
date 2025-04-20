@@ -1,4 +1,0 @@
-[
-  "7b2a2af5-a44b-40da-86bd-624cc425cf0e",
-  "faa90cad-c933-4e29-87dd-ab969899eff7"
-]

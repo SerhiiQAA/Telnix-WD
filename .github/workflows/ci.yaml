@@ -1,12 +1,9 @@
 name: allure-report
 
 on:
-  release:
-    types:
-      - created
   push:
     branches:
-      - master  
+      - gh-pages  # Вказуємо вашу гілку, на якій буде запускатись Action
 
 jobs:
   allure:
@@ -35,24 +32,24 @@ jobs:
 
       # Крок 4: Встановлення залежностей проєкту
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Використовуйте npm ci для швидкого встановлення залежностей
 
-      # Крок 5: Запуск тестів
-      - name: Run tests
-        run: npm run test  # Замініть на вашу команду запуску тестів, яка генерує allure-results
+      # Крок 5: Запуск тестів і генерація звіту Allure
+      - name: Run tests and generate Allure results
+        run: |
+          npx wdio ./wdio.conf.ts # Запускаємо тести (використовуйте вашу команду)
+          npm run allure:generate # Генерація Allure-звіту
 
-      # Крок 6: Генерація звіту Allure
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
+      # Крок 6: Збереження історії Allure
+      - name: Prepare Allure History
+        run: |
+          mkdir -p allure-report/history
+          cp -R gh-pages/allure-report/history allure-report/ || true
+
+      # Крок 7: Розгортання звіту Allure на GitHub Pages
+      - name: Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          allure_results: allure-results  # Шлях до результатів Allure
-          allure_history: gh-pages        # Історія (папка gh-pages)
-          keep_reports: 20                # Зберігати останні 20 звітів
-
-      # Крок 7: Розгортання звіту на GitHub Pages
-      - name: Deploy report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages       # Гілка для GitHub Pages
-          PUBLISH_DIR: gh-pages          # Директорія для публікації
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-report
+          publish_branch: gh-pages  # Гілка для GitHub Pages

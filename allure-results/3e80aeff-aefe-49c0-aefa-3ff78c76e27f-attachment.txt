@@ -1,3 +1,0 @@
-{
-  "handle": "55a52c29-73cd-46ea-b80e-3dcaf3d642f5"
-}
