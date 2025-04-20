@@ -3,7 +3,7 @@ name: allure-report
 on:
   push:
     branches:
-      - master # Запускаємо workflow для основної гілки master
+      - master # Використовуємо основну гілку
 
 jobs:
   allure:
@@ -25,22 +25,20 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      # Крок 4: Запуск тестів і генерація результатів Allure
+      # Крок 4: Запуск тестів у headless-режимі
       - name: Run Tests and Generate Allure Results
+        env:
+          DISPLAY: ":99" # Емуляція дисплея
         run: |
-          npx wdio ./wdio.conf.ts # Запустіть тести WebdriverIO
-          npm run allure:generate # Згенеруйте звіт Allure
+          Xvfb :99 & # Запускаємо віртуальний дисплей
+          npx wdio ./wdio.conf.ts --headless # Запускаємо тести у headless-режимі
+          npm run allure:generate # Генерація звіту Allure
 
-      # Крок 5: Копіювання історії Allure
-      - name: Prepare Allure History
-        run: |
-          mkdir -p allure-report/history
-          cp -R gh-pages/history allure-report/ || true
-
-      # Крок 6: Публікація звіту Allure на GitHub Pages
+      # Крок 5: Публікація звіту Allure на GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-report # Папка зі звітом
-          publish_branch: gh-pages   # Гілка для публікації
+          publish_dir: allure-report # Шлях до звіту
+          publish_branch: gh-pages # Гілка для публікації
+
