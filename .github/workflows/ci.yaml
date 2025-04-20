@@ -1,39 +1,54 @@
-name: Publish Allure Report
+name: allure-report
 
 on:
   push:
     branches:
-      - master # Виконується на пуш до основної гілки
+      - master
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
 
 jobs:
-  generate-and-publish-report:
+  allure:
+    name: Generate Allure Report
     runs-on: ubuntu-latest
-
     steps:
-      # Крок 1: Клонування репозиторію
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: ⬇️ Checkout Code
+        uses: actions/checkout@v2
 
-      # Крок 2: Встановлення Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: 🐢 Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version-file: '.nvmrc'
 
-      # Крок 3: Встановлення залежностей
-      - name: Install Dependencies
-        run: npm install
+      - name: 🏗️ Install Dependencies
+        run: npm ci
 
-      # Крок 4: Запуск тестів у headless-режимі та генерація звіту
-      - name: Run Tests and Generate Allure Results
-        run: |
-          npx wdio ./wdio.conf.ts # Запускаємо тести в headless-режимі
-          npm run allure:generate # Генеруємо Allure звіт
+      - name: 🧪 Run Tests
+        run: npx wdio ./wdio.conf.ts
 
-      # Крок 5: Публікація Allure звіту на GitHub Pages
-      - name: Deploy Allure Report to GitHub Pages
+      - name: 📥 Get Allure History
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: 📊 Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: 🚀 Deploy to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-report # Папка, яка містить HTML-звіт
-          publish_branch: gh-pages # Гілка для публікації
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
