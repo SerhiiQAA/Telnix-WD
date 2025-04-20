@@ -56,7 +56,10 @@ export const config: WebdriverIO.Config = {
     //     browserName: 'chrome'
     // }, 
     {
-        browserName: 'firefox'
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: ['--headless'], // Запуск у headless-режимі
+        },
     }
     // {
     //     browserName: 'MicrosoftEdge'
