@@ -3,7 +3,7 @@ name: allure-report
 on:
   push:
     branches:
-      - master  # Вказуємо вашу гілку, на якій буде запускатись Action
+      - master # Запускаємо workflow для основної гілки master
 
 jobs:
   allure:
@@ -12,44 +12,35 @@ jobs:
 
     steps:
       # Крок 1: Клонування репозиторію
-      - name: Checkout repository
+      - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Крок 2: Отримання історії Allure
-      - name: Get Allure history
-        uses: actions/checkout@v2
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      # Крок 3: Встановлення Node.js
+      # Крок 2: Встановлення Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18 # Актуальна версія Node.js
+          node-version: 18
 
-      # Крок 4: Встановлення залежностей проєкту
-      - name: Install dependencies
-        run: npm ci  # Використовуйте npm ci для швидкого встановлення залежностей
+      # Крок 3: Встановлення залежностей
+      - name: Install Dependencies
+        run: npm install
 
-      # Крок 5: Запуск тестів і генерація звіту Allure
-      - name: Run tests and generate Allure results
+      # Крок 4: Запуск тестів і генерація результатів Allure
+      - name: Run Tests and Generate Allure Results
         run: |
-          npx wdio ./wdio.conf.ts # Запускаємо тести (використовуйте вашу команду)
-          npm run allure:generate # Генерація Allure-звіту
+          npx wdio ./wdio.conf.ts # Запустіть тести WebdriverIO
+          npm run allure:generate # Згенеруйте звіт Allure
 
-      # Крок 6: Збереження історії Allure
+      # Крок 5: Копіювання історії Allure
       - name: Prepare Allure History
         run: |
           mkdir -p allure-report/history
-          cp -R gh-pages/allure-report/history allure-report/ || true
+          cp -R gh-pages/history allure-report/ || true
 
-      # Крок 7: Розгортання звіту Allure на GitHub Pages
+      # Крок 6: Публікація звіту Allure на GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-report
-          publish_branch: gh-pages  # Гілка для GitHub Pages
+          publish_dir: allure-report # Папка зі звітом
+          publish_branch: gh-pages   # Гілка для публікації
