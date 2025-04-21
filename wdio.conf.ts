@@ -35,7 +35,7 @@ export const config: WebdriverIO.Config = {
     bail: 0,
     baseUrl: 'https://telnyx.com',
 
-    waitforTimeout: 10000,
+    waitforTimeout: 15000,
 
     connectionRetryTimeout: 120000,
 
