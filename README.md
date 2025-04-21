@@ -1,47 +1,96 @@
-# Telnix WD Project
+# Telnix WebDriverIO Automation
 
-This project is a **WebdriverIO** automation framework for testing the Telnix application. It includes various test scenarios to validate functionality and ensure the stability of the application.
+A test automation project for a web application using **WebDriverIO** and **TypeScript**, with support for **OOP**, **Allure Reporting**, **GitHub Actions**, **GitHub Pages**, and **Docker** for isolated test execution.
 
-## Prerequisites
+## Technologies
 
-Make sure you have the following installed:
-- [Node.js](https://nodejs.org) (version 18.x or higher recommended)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) for dependency management
-- [Allure Commandline](https://docs.qameta.io/allure/)
+- **WebDriverIO** — Test automation framework.
+- **TypeScript** — For static typing and better IDE support.
+- **OOP** — Object-Oriented Programming principles for page objects.
+- **Allure Report** — For generating test reports.
+- **GitHub Actions** — CI/CD pipeline for automated testing.
+- **GitHub Pages** — For hosting Allure reports.
+- **Docker** — For running tests in isolated containers.
+
+## Project Structure
+
+- **`/test`** — Test files.
+- **`/pageobjects`** — Page objects implemented with OOP.
+- **`/config`** — WebDriverIO configuration files.
+- **`/allure-results`** — Allure test results.
+- **`/allure-report`** — Allure report output.
+
+## Run Scripts
+
+### Run tests:
+
+```bash
+npm run test
+
 
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/telnix-wd.git
+   git clone https://github.com/your-repo/Telnix-WebdiverIO-TS.git
 
 2. Navigate into the project directory:
    ```bash
-   cd telnix-wd
+   cd Telnix-WebdiverIO-TS
 
 3. Install dependencies:
    ```bash
    npm install
 
-## Project Structure
 
-    test/specs/: Contains all test cases.
+## Run tests for specific devices:
 
-    test/pageobjects/: Contains Page Object classes.
+1. Mobile:
+   ```bash
+   npm run test:mobile
 
-    allure-results/: Stores results for Allure reporting.
+2. Tablet:
+   ```bash
+    npm run test:tablet
 
-## Scripts
+3. Desktop:
+   ```bash
+   npm run test:desktop
 
-    npm run wdio: Runs the test suite using WebdriverIO.
+## Allure report:
 
-## Dependencies
+1. Generate Allure report:
+   ```bash
+   npm run report:generate
 
-Key dependencies used in this project:
+2. Open Allure report:
+   ```bash
+    npm run report:open
 
-    WebdriverIO: For browser automation.
+3. Clean up report:
+   ```bash
+    npm run clean
 
-    Allure Reporter: For test reporting.
+
+## GitHub Actions
+
+CI/CD setup with GitHub Actions for running tests on every push. Configuration is available in .github/workflows/ci.yml.
+
+## Docker Usage:
+
+1. To run tests in Docker:
+   ```bash
+   docker-compose up --build
+
+# Allure Reporting:
+
+1. Generate Allure reports after test execution:
+   ```bash
+   npm run report:generate
+   npm run report:open
+
+## GitHub Pages
+Publish Allure reports to GitHub Pages for easy access and sharing.
 
 ## License
 
