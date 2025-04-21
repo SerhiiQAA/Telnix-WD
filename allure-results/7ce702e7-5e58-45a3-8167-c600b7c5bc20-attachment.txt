@@ -1,3 +1,0 @@
-{
-  "text": "Talus utor decet."
-}

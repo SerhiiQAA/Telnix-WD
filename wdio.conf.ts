@@ -24,6 +24,7 @@ export const config: WebdriverIO.Config = {
                 args: ['--headless'], // Запуск у headless-режимі
                 log: { level: 'fatal' }
             },
+            'webSocketUrl': false,
         }
     // {
     //     browserName: 'MicrosoftEdge'
