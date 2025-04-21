@@ -1,6 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","5973","Talk to an expert with valid data","","Fri Apr 18 07:44:48 GMT 2025","passed","Fri Apr 18 07:44:54 GMT 2025","","Contact Us Page Form","",""
-"","3604","Check currency change from USD to EUR","","Fri Apr 18 07:45:04 GMT 2025","passed","Fri Apr 18 07:45:07 GMT 2025","","Currency Selection on Multiple Pages: Testing Currency Selection on /pricing/storage","",""
-"","2901","Check currency change from EUR to USD","","Fri Apr 18 07:45:07 GMT 2025","passed","Fri Apr 18 07:45:10 GMT 2025","","Currency Selection on Multiple Pages: Testing Currency Selection on /pricing/storage","",""
-"","6707","Check the ability to send a message","","Fri Apr 18 07:44:50 GMT 2025","passed","Fri Apr 18 07:44:57 GMT 2025","","Assistant Functionality","",""
-"","5424","Download full coverage with valid data","","Fri Apr 18 07:45:05 GMT 2025","passed","Fri Apr 18 07:45:11 GMT 2025","","Global Coverage Page Form","",""
