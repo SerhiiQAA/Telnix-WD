@@ -3,6 +3,7 @@ import CurrencyFilterPage from '../pageobjects/CurrencyFilterPage';
 describe('Currency Selection on /pricing/messaging page', () => {
     beforeEach(async () => {
         await browser.url('/pricing/messaging');
+        await CurrencyFilterPage.closeCookieModalIfVisible();
     });
 
     it('should change currency from USD to EUR', async () => {
