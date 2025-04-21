@@ -1,4 +1,5 @@
 import GlobalCoveragePage from '../pageobjects/GlobalCoveragePage';
+import CookiePage from '../pageobjects/CookiePage';
 import { faker } from '@faker-js/faker';
 
 const firstName = faker.person.firstName();
@@ -9,6 +10,7 @@ describe('Global Coverage Page Form', () => {
     
     beforeEach(async () => {
         await browser.url('/global-coverage');
+        await CookiePage.closeCookieModalIfVisible();
     });
 
     it('Download full coverage with valid data', async () => {

@@ -7,7 +7,6 @@ class AssistantPage {
     get assistantCloseButton() { return $('.c-cPtnfT'); } 
     get assistantAllMessages() { return $$('.c-dEGHBU'); } 
     get assistantResponseMessages() { return $$('.c-khViZk'); }
-    get CookieCloseButton() { return $('#onetrust-close-btn-container [aria-label="Close"]'); }
 
     async openAssistant() {
         await this.assistantButton.click();
@@ -29,16 +28,7 @@ class AssistantPage {
     async getAssistantResponseCount(): Promise<number> {
         const responses = await this.assistantResponseMessages;
         return responses.length;
-    }
-
-    async closeCookieModalIfVisible() {
-        const cookieBtn = this.CookieCloseButton;
-        const isDisplayed = await cookieBtn.isDisplayed();
-    
-        if (isDisplayed) {
-            await cookieBtn.click();
-        }
-    }    
+    }  
 }
 
 export default new AssistantPage();

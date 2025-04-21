@@ -1,10 +1,11 @@
 import AssistantPage from '../pageobjects/AssistantPage';
+import CookiePage from '../pageobjects/CookiePage';
 import { faker } from '@faker-js/faker'; 
 
 describe('Assistant Functionality', () => {
     beforeEach(async () => {
         await browser.url('/');
-        await AssistantPage.closeCookieModalIfVisible();
+        await CookiePage.closeCookieModalIfVisible();
         await AssistantPage.openAssistant();
     });
     

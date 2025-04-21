@@ -1,4 +1,5 @@
 import ContactUsPage from '../pageobjects/ContactUsPage';
+import CookiePage from '../pageobjects/CookiePage';
 import { faker } from '@faker-js/faker';
 
 const firstName = faker.person.firstName();
@@ -12,6 +13,7 @@ describe('Contact Us Page Form', () => {
     
     beforeEach(async () => {
         await browser.url('/contact-us');
+        await CookiePage.closeCookieModalIfVisible();
     });
 
     it('Talk to an expert with valid data', async () => {

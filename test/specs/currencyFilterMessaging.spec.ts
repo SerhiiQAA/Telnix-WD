@@ -1,9 +1,10 @@
 import CurrencyFilterPage from '../pageobjects/CurrencyFilterPage';
+import CookiePage from '../pageobjects/CookiePage';
 
 describe('Currency Selection on /pricing/messaging page', () => {
     beforeEach(async () => {
         await browser.url('/pricing/messaging');
-        await CurrencyFilterPage.closeCookieModalIfVisible();
+        await CookiePage.closeCookieModalIfVisible();
     });
 
     it('should change currency from USD to EUR', async () => {

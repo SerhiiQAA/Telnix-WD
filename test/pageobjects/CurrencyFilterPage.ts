@@ -10,15 +10,7 @@ class CurrencyFilterPage {
 
     async getTablesText() {
         return await this.pricesTablesText.getText();
-    }
-
-    async closeCookieModalIfVisible() {
-        const cookieBtn = this.CookieCloseButton;
-        if (await cookieBtn.isDisplayed()) {
-            await cookieBtn.click();
-            await cookieBtn.waitForDisplayed({ reverse: true, timeout: 5000 });
-        }
-    }       
+    }     
 }
 
 export default new CurrencyFilterPage();

@@ -1,8 +1,10 @@
 import SocialPage from '../pageobjects/SocialLinksPage';
+import CookiePage from '../pageobjects/CookiePage';
 
 describe('Social Media Links Navigation', () => {
     before(async () => {
         await browser.url('/');
+        await CookiePage.closeCookieModalIfVisible();
     });
     const links = [
         {
