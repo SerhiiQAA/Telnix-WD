@@ -26,6 +26,7 @@ A test automation project for a web application using **WebDriverIO** and **Type
 
 ```bash
 npm run test
+```
 
 
 ## Installation
@@ -41,6 +42,7 @@ npm run test
 3. Install dependencies:
    ```bash
    npm install
+   ```
 
 
 ## Run tests for specific devices:
@@ -56,12 +58,14 @@ npm run test
 3. Desktop:
    ```bash
    npm run test:desktop
+   ```
 
 ## Allure report:
 
 1. Generate Allure report:
    ```bash
    npm run report:generate
+   ```
 
 2. Open Allure report:
    ```bash
