@@ -1,14 +1,14 @@
 class CurrencyFilterPage {
     get currencyDropdown() { return $('#currency-filter'); }
-    get bodyText() { return $('body'); }
+    get servicesTableText() { return $('table tbody'); }
 
     async selectCurrency(currency: string) {
         await this.currencyDropdown.click();
         await $(`//*[text()="${currency}"]`).click();
     }
 
-    async getBodyText() {
-        return await this.bodyText.getText();
+    async getTableText() {
+        return await this.servicesTableText.getText();
     }
 }
 
