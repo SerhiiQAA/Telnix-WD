@@ -31,10 +31,12 @@ describe('Social Media Links Navigation', () => {
             const handles = await SocialPage.getWindowHandles();
             expect(handles.length).toBeGreaterThan(1);
             await SocialPage.switchToWindow(handles[handles.length - 1]);
+
             await browser.waitUntil(
                 async () => (await SocialPage.getCurrentUrl()) !== 'about:blank',
                 { timeout: 10000, timeoutMsg: 'New URL did not load' }
             );
+            
             const currentUrl = await SocialPage.getCurrentUrl();
             await SocialPage.verifyLinkidinUrl(currentUrl, expectedUrl, name);
             await SocialPage.closeCurrentWindow();
