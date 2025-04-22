@@ -15,8 +15,8 @@ A test automation project for a web application using **WebDriverIO** and **Type
 ## Project Structure
 
 - **`/test`** — Test files.
-- **`/pageobjects`** — Page objects implemented with OOP.
-- **`/specs`** — Test scripts.
+- **`/test/pageobjects`** — Page objects implemented with OOP.
+- **`/test/specs`** — Test scripts.
 - **`/config`** — WebDriverIO configuration files.
 
 ## How it works:
@@ -35,7 +35,7 @@ A test automation project for a web application using **WebDriverIO** and **Type
    ```bash
    npm install
    ```
-   
+
 ### Run tests:
 
 ```bash
