@@ -16,18 +16,10 @@ A test automation project for a web application using **WebDriverIO** and **Type
 
 - **`/test`** — Test files.
 - **`/pageobjects`** — Page objects implemented with OOP.
+- **`/specs`** — Test scripts.
 - **`/config`** — WebDriverIO configuration files.
-- **`/allure-results`** — Allure test results.
-- **`/allure-report`** — Allure report output.
 
-## Run Scripts
-
-### Run tests:
-
-```bash
-npm run test
-```
-
+## How it works:
 
 ## Installation
 
@@ -44,8 +36,13 @@ npm run test
    npm install
    ```
 
+### Run tests:
 
-## Run tests for specific devices:
+```bash
+npm run test
+```
+
+## Run tests for specific device screens:
 
 1. Mobile:
    ```bash

@@ -38,7 +38,6 @@ describe('Social Media Links Navigation', () => {
                     timeoutMsg: 'New URL did not load',
                 }
             );
-
             const currentUrl = await SocialPage.getCurrentUrl();
             if (expectedUrl instanceof RegExp) {
                 await expect(currentUrl).toMatch(expectedUrl);
