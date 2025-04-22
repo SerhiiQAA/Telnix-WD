@@ -17,6 +17,9 @@
     "test:mobile": "wdio run ./config/wdio.mobile.conf.ts",
     "test:tablet": "wdio run ./config/wdio.tablet.conf.ts",
     "test:desktop": "wdio run ./config/wdio.desktop.conf.ts",
+    "test:chrome:desktop": "wdio run ./config/wdio.chrome.desktop.conf.ts",
+    "test:firefox:desktop": "wdio run ./config/wdio.firefox.desktop.conf.ts",
+    "test:edge:desktop": "wdio run ./config/wdio.edge.desktop.conf.ts",
     "report:generate": "allure generate allure-results --clean -o allure-report",
     "report:open": "allure open allure-report",
     "clean": "rm -rf allure-results allure-report logs"
