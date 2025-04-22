@@ -32,7 +32,7 @@ describe('Contact Us Page Form', () => {
         expect(await ContactUsPage.successMessage.getText()).toContain('Thank you.');
     });
 
-    it('Talk to an expert with valid data', async () => {
+    it('Talk to an expert with empty fields', async () => {
         await ContactUsPage.clickSubmit();
         await ContactUsPage.howCanWeHelpErrorMsg.waitForExist();
         expect(await ContactUsPage.howCanWeHelpErrorMsg.getText()).toContain('This field is required.');
