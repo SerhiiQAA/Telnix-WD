@@ -35,7 +35,7 @@ A test automation project for a web application using **WebDriverIO** and **Type
    ```bash
    npm install
    ```
-
+   
 ### Run tests:
 
 ```bash
