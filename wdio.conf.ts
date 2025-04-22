@@ -18,9 +18,14 @@ export const config: WebdriverIO.Config = {
         {
             browserName: 'chrome',
             'goog:chromeOptions': {
+              args: ['--headless', '--no-sandbox', '--disable-gpu', '--window-size=1920,1080'],
+            },
+            'moz:firefoxOptions': {
               args: ['--headless'],
-            }
+            },
+            acceptInsecureCerts: true,
         }, 
+
         {
             browserName: 'firefox',
             'moz:firefoxOptions': {
