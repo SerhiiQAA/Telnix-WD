@@ -95,4 +95,4 @@ Publish Allure reports to GitHub Pages for easy access and sharing.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. 
