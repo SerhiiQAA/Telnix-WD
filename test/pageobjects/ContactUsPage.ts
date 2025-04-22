@@ -46,9 +46,15 @@ class ContactUsPage {
 
     async selectCountry(country: string) {
         await this.phoneNumberExtension.waitForDisplayed();
-        await this.phoneNumberExtension.scrollIntoView();
+        await this.phoneNumberExtension.scrollIntoView({ block: 'center' });
+        await browser.pause(500);
+        await browser.execute(() => {
+            const header = document.querySelector('.c-fuRoiU');
+            if (header) (header as HTMLElement).style.display = 'none';
+        });
         await this.phoneNumberExtension.selectByVisibleText(country);
     }
+    
 
     async typePhoneNumber(number: string) {
         await this.phoneNumberBase.waitForDisplayed();
