@@ -22,6 +22,7 @@ describe('Social Media Links Navigation', () => {
             name: 'Facebook',
             clickMethod: SocialPage.clickFacebookLink.bind(SocialPage),
             expectedUrl: 'facebook.com/Telnyx',
+
         },
     ];
 
@@ -39,18 +40,8 @@ describe('Social Media Links Navigation', () => {
             );
 
             const currentUrl = await SocialPage.getCurrentUrl();
-            console.log(`[${name}] Opened URL:`, currentUrl);
 
-            if (name === 'LinkedIn') {
-                const urlObj = new URL(currentUrl);
-                const redirect = urlObj.searchParams.get('sessionRedirect');
-                const finalUrl = redirect ? decodeURIComponent(redirect) : currentUrl;
-                expect(finalUrl).toContain('linkedin.com/company/telnyx');
-            } else if (expectedUrl instanceof RegExp) {
-                expect(currentUrl).toMatch(expectedUrl);
-            } else {
-                expect(currentUrl).toContain(expectedUrl);
-            }
+            await SocialPage.verifyLinkidinUrl(currentUrl, expectedUrl, name);
 
             await SocialPage.closeCurrentWindow();
             await SocialPage.switchToWindow(handles[0]);
