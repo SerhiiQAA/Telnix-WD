@@ -3,25 +3,35 @@ class CurrencyFilterPage {
     get pricesTablesText() { return $('table tbody'); }
     get usdOption() { return $('//*[text()="USD"]'); }
     get eurOption() { return $('//*[text()="EUR"]'); }
-    get CookieCloseButton() { return $('#onetrust-close-btn-container [aria-label="Close"]'); }
 
     async selectCurrency(currency: string) {
+        await this.currencyDropdown.waitForDisplayed();
+        await this.currencyDropdown.scrollIntoView();
+        await this.currencyDropdown.waitForClickable();
         await this.currencyDropdown.click();
+
         let option;
-        if (currency === 'USD') {
-            option = this.usdOption;
-        } else if (currency === 'EUR') {
-            option = this.eurOption;
-        } else {
-            throw new Error(`Currency "${currency}" is not supported`);
+        switch (currency) {
+            case 'USD':
+                option = this.usdOption;
+                break;
+            case 'EUR':
+                option = this.eurOption;
+                break;
+            default:
+                throw new Error(`Currency "${currency}" is not supported`);
         }
+
         await option.waitForDisplayed();
+        await option.scrollIntoView();
+        await option.waitForClickable();
         await option.click();
     }
 
     async getTablesText() {
+        await this.pricesTablesText.waitForDisplayed();
         return await this.pricesTablesText.getText();
-    }     
+    }
 }
 
 export default new CurrencyFilterPage();

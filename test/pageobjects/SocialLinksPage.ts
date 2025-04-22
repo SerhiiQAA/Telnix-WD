@@ -13,16 +13,22 @@ class SocialPage {
 
     async clickLinkedInLink(): Promise<void> {
         await this.linkedInLink.waitForDisplayed();
+        await this.linkedInLink.scrollIntoView();
+        await this.linkedInLink.waitForClickable();
         await this.linkedInLink.click();
     }
 
     async clickTwitterLink(): Promise<void> {
         await this.twitterLink.waitForDisplayed();
+        await this.twitterLink.scrollIntoView();
+        await this.twitterLink.waitForClickable();
         await this.twitterLink.click();
     }
 
     async clickFacebookLink(): Promise<void> {
         await this.facebookLink.waitForDisplayed();
+        await this.facebookLink.scrollIntoView();
+        await this.facebookLink.waitForClickable();
         await this.facebookLink.click();
     }
 
