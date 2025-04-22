@@ -14,6 +14,7 @@
   },
   "scripts": {
     "test": "npx wdio ./wdio.conf.ts",
+    "test:single": "npx wdio ./wdio.conf.ts --spec ./test/specs/example.spec.ts",
     "test:mobile": "wdio run ./config/wdio.mobile.conf.ts",
     "test:tablet": "wdio run ./config/wdio.tablet.conf.ts",
     "test:desktop": "wdio run ./config/wdio.desktop.conf.ts",
