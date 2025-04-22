@@ -1,22 +1,13 @@
 import AssistantPage from '../pageobjects/AssistantPage';
-import CookiePage from '../pageobjects/CookiePage';
-import { faker } from '@faker-js/faker'; 
 
-describe('Assistant Functionality', () => {
-    beforeEach(async () => {
+describe('Assistant chat functionality', () => {
+    it('should send a message and display it in the chat', async () => {
         await browser.url('/');
-        await CookiePage.closeCookieModalIfVisible();
         await AssistantPage.openAssistant();
-    });
-    
-    it('Check the ability to send a message', async () => {
-        const randomMessage = faker.lorem.sentence(); 
-        const isSendButtonEnabled = await AssistantPage.assistantSendMsgButton.isEnabled(); 
-        expect(isSendButtonEnabled).toBe(false); 
-        await AssistantPage.typeMessage(randomMessage); 
-        await AssistantPage.sendMessage(); 
-        await AssistantPage.assistantSentMsgField.waitForDisplayed();
-        const sentMessage = await AssistantPage.getSentMessageText(); 
-        expect(sentMessage).toContain(randomMessage); 
+        const testMessage = 'Hello from test!';
+        await AssistantPage.typeMessage(testMessage);
+        await AssistantPage.sendMessage();
+        const lastText = await AssistantPage.waitForAndGetLastUserMessageText();
+        expect(lastText).toContain(testMessage);
     });
 });

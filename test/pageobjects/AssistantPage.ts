@@ -1,34 +1,35 @@
+import { $, $$ } from '@wdio/globals';
+
 class AssistantPage {
-    get assistantButton() { return $('.c-bpNouX'); } 
-    get assistantTitle() { return $('.c-gRBNgU'); } 
-    get assistantMsgField() { return $('.c-fJsHXZ'); } 
-    get assistantSentMsgField() { return $('.c-bCIlIy.c-bupPtx'); }
-    get assistantSendMsgButton() { return $('.c-cODSYQ.c-gGVcDH'); } 
-    get assistantCloseButton() { return $('.c-cPtnfT'); } 
-    get assistantAllMessages() { return $$('.c-dEGHBU'); } 
-    get assistantResponseMessages() { return $$('.c-khViZk'); }
+    get assistantOpenButton() { return $('.c-bGYNvC > svg'); }
+    get messageInput() { return $('.c-fJsHXZ'); }
+    get inputField() { return $('[placeholder="Type your question here"]'); }
+    get sendButton() { return $('.c-gGVcDH > svg'); }
+    get userMessages() { return $$('.c-bupPtx'); }
 
     async openAssistant() {
-        await this.assistantButton.click();
+        await this.assistantOpenButton.click();
     }
 
     async typeMessage(message: string) {
-        await this.assistantMsgField.setValue(message);
+        await this.inputField.setValue(message);
     }
 
     async sendMessage() {
-        await this.assistantSendMsgButton.click();
+        await this.sendButton.click();
     }
 
-    async getSentMessageText(): Promise<string> {
-        await this.assistantSentMsgField.waitForDisplayed();
-        return await this.assistantSentMsgField.getText();
-    }
+    async waitForAndGetLastUserMessageText(): Promise<string> {
+        await browser.waitUntil(async () => {
+            return await (await this.userMessages).length > 0;
+        }, {
+            timeout: 10000,
+            timeoutMsg: 'User message not displayed after sending'
+        });
 
-    async getAssistantResponseCount(): Promise<number> {
-        const responses = await this.assistantResponseMessages;
-        return responses.length;
-    }  
+        const messages = await this.userMessages;
+        return messages[await messages.length - 1].getText();
+    }
 }
 
 export default new AssistantPage();
