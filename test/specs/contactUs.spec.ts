@@ -17,6 +17,7 @@ describe('Contact Us Page Form', () => {
     });
 
     it('Talk to an expert with valid data', async () => {
+        await ContactUsPage.clickSubmit();
         await ContactUsPage.selectReasonForContact('Support');
         await ContactUsPage.typeFirstName(firstName);
         await ContactUsPage.typeLastName(lastName);
@@ -80,6 +81,7 @@ describe('Contact Us Page Form', () => {
     });
 
     it('Talk to an expert with empty "Business email" field', async () => {
+        await ContactUsPage.clickSubmit();
         await ContactUsPage.selectReasonForContact('Support');
         await ContactUsPage.typeFirstName(firstName);
         await ContactUsPage.typeLastName(lastName);
