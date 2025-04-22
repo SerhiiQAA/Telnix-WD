@@ -24,7 +24,7 @@ coverage/
 *.lcov
 
 # Environment files
-.env
+# .env
 .env.local
 .env.*.local
 
