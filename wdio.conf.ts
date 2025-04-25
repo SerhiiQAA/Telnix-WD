@@ -18,7 +18,7 @@ export const config: WebdriverIO.Config = {
         {
             browserName: 'chrome',
             'goog:chromeOptions': {
-              args: ['--headless', '--no-sandbox', '--disable-gpu', '--window-size=1920,1080'],
+              args: ['--headless', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--window-size=1920,1080'],
             },
             'moz:firefoxOptions': {
               args: ['--headless'],
@@ -33,6 +33,7 @@ export const config: WebdriverIO.Config = {
                 log: { level: 'fatal' }
             },
             'webSocketUrl': false,
+            acceptInsecureCerts: true,
         }
         // {
         //     browserName: 'MicrosoftEdge',
